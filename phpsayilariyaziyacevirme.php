@@ -50,7 +50,7 @@ class SayiCevir
          * ve diziye ekleniyor
          */
         for ($i = 0; $i < count($rakamlar); $i++) {
-            $basamaklar[$b] .= $rakamlar[--$bSay];
+            @$basamaklar[$b] .= $rakamlar[--$bSay];
             if ((($i + 1) % 3) == 0)
                 $b++;
         }
@@ -59,15 +59,15 @@ class SayiCevir
          * dizideki her üçlü hane yazıya çeviriliyor
          */
         for ($i = 0; $i < count($basamaklar); $i++) {
-            $birler = $basamaklar[$i][0];
-            $onlar = $basamaklar[$i][1];
-            $yuzler = $basamaklar[$i][2];
+            @$birler = $basamaklar[$i][0];
+            @$onlar = $basamaklar[$i][1];
+            @$yuzler = $basamaklar[$i][2];
 
             $yuz = $yuzler == 0 ? '' : ' yüz ';
 
             if ($yuzler == 1) $yuzler--;
 
-            $islem[$i] = trim($trRakam[$yuzler] . $yuz . $trOnlar[$onlar] . ' ' . $trRakam[$birler]);
+            @$islem[$i] = trim($trRakam[$yuzler] . $yuz . $trOnlar[$onlar] . ' ' . $trRakam[$birler]);
         }
 
         $sonuc = '';
