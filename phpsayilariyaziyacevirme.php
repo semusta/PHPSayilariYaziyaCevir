@@ -104,4 +104,4 @@ echo SayiCevir::cevir("100,10") . "\n";
 echo SayiCevir::cevir("13456213,1245") . "\n";
 echo SayiCevir::cevir("1000000100,110110") . "\n";
 echo SayiCevir::cevir("1541510101510") . "\n";
-echo SayiCevir::cevir("1000dsf100100100") . "\n";
+echo SayiCevir::cevir("1000dsf100100100") . "\n"; //hata verir sayı içinde harf var
