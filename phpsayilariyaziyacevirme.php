@@ -19,9 +19,7 @@ class SayiCevir
     {
         //sayı kontrolu geçerli değilse mesaj döndür
         if(!preg_match('/^\d+,\d+$|^\d+$/', $sayi)) {
-
             return 'Girilen sayı geçerli değil !';
-
         }
 
         if (strpos($sayi, ',')) {
