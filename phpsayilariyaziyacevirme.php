@@ -26,11 +26,11 @@ class SayiCevir
 
         if (strpos($sayi, ',')) {
             $sayi = explode(',', $sayi);
-            $tam = self::cevir2($sayi[0]);
-            $ondalik = self::cevir2($sayi[1]);
             if (strlen($sayi[0]) > 18 || strlen($sayi[1]) > 18) {
                 return 'Sayılar tam veya ondalıklı kısım ayrı olarak enfazla 18 basamaklı olabilir !';
             }
+            $tam = self::cevir2($sayi[0]);
+            $ondalik = self::cevir2($sayi[1]);
             return $tam . ' tl ' . $ondalik . ' kuruş';
         } else {
             if (strlen($sayi) > 18) {
@@ -63,7 +63,11 @@ class SayiCevir
          * ve diziye ekleniyor
          */
         for ($i = 0; $i < count($rakamlar); $i++) {
-            @$basamaklar[$b] .= $rakamlar[--$bSay];
+            if (isset($basamaklar[$b])) {
+                $basamaklar[$b] .= $rakamlar[--$bSay];
+            } else {
+                $basamaklar[$b] = $rakamlar[--$bSay];
+            }
             if ((($i + 1) % 3) == 0)
                 $b++;
         }
@@ -83,13 +87,13 @@ class SayiCevir
             $islem[$i] = trim($trRakam[$yuzler] . $yuz . $trOnlar[$onlar] . ' ' . $trRakam[$birler]);
         }
 
-        $sonuc = '';
 
         /*
          * islem dizisinde elden edilen kısımlar
          * bin milyon milyar ... olarak
          * son kısım elde ediliyor
          */
+        $sonuc = '';
         for ($i = 0; $i < count($islem); $i++) {
             if (empty($islem[$i])) continue;
             if ($i == 1) {
@@ -111,6 +115,6 @@ class SayiCevir
 echo SayiCevir::cevir("100,10") . "\n";
 echo SayiCevir::cevir("13456213,1245") . "\n";
 echo SayiCevir::cevir("1000000100,110110") . "\n";
-echo SayiCevir::cevir("1541510101510") . "\n";
+echo SayiCevir::cevir("1541510101510,1001") . "\n";
 echo SayiCevir::cevir("1000dsf100100100") . "\n";
-echo SayiCevir::cevir("100000000000000000,10") . "\n";
+echo SayiCevir::cevir("1000000000000000000,10") . "\n";
