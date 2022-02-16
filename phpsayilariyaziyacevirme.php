@@ -17,6 +17,13 @@ class SayiCevir
      */
     public static function cevir($sayi)
     {
+        //sayı kontrolu geçerli değilse mesaj döndür
+        if(!preg_match('/^\d+,\d+$|^\d+$/', $sayi)) {
+
+            return 'Girilen sayı geçerli değil !';
+
+        }
+
         if (strpos($sayi, ',')) {
             $sayi = explode(',', $sayi);
             $tam = self::cevir2($sayi[0]);
@@ -98,3 +105,5 @@ class SayiCevir
 echo SayiCevir::cevir("100,10") . "\n";
 echo SayiCevir::cevir("13456213,1245") . "\n";
 echo SayiCevir::cevir("1000000100,110110") . "\n";
+echo SayiCevir::cevir("1541510101510") . "\n";
+echo SayiCevir::cevir("1000dsf100100100") . "\n";
